@@ -19,10 +19,10 @@ displayWeather: function(data) {
 document.querySelector(".city").innerText = name;
 document.querySelector(".icon").src ="https://openweathermap.org/img/wn/"+ icon + "@2x.png";
 document.querySelector(".description").innerText = description;
-document.querySelector(".temp").innerText = (temp) + "°F";
-document.querySelector(".feels_like").innerText = feels_like + "°F";
+document.querySelector(".temp").innerText = (Math.round(temp)) + "°F";
+document.querySelector(".feels_like").innerText = "Feels like: " + Math.round(feels_like) + "°F";
 document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
-document.querySelector(".wind").innerText = "Wind Speed: " + speed + "mph";
+document.querySelector(".wind").innerText = "Wind Speed: " + speed + " mph";
 document.querySelector(".weather").classList.remove("loading");
 document.body.style.backgroundImage="url('https://source.unsplash.com/1980x1080/?" + name + "')"
 },
@@ -32,10 +32,13 @@ search: function() {
 };
 document.querySelector(".search").addEventListener("click", function(){
     weather.search();
+    (document.querySelector(".search-bar").value) = '';
+
 });
 document.querySelector(".search-bar").addEventListener("keypress", function(event){
     if(event.key === "Enter"){
         weather.search();
+        (document.querySelector(".search-bar").value) = '';
 
     }
 })
